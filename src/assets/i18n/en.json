@@ -1,0 +1,31 @@
+{
+    "GLOBAL": {
+      "LOGO": "/assets/amex-membershiprewards-logo_EN.svg",
+      "LOGO_ALT": "Membership Rewards",
+      "LOGO_FOOTER": "/assets/amex-DLLWI_EN.png",
+      "LOGO_FOOTER_ALT": "Don’t live life without it"
+    },
+    "HOME": {
+      "TITLE": "Hello Angular with !",
+      "SELECT": "Change language",
+      "SEARCH_TEXT": "Search",
+      "HERO_1": "DON’T",
+      "HERO_2": "WITHOUT IT.",
+      "HERO_3": "Because there’s nothing like finding the perfect gift.",
+      "VIEW_ALL_BTN": "View all products",
+      "STYLE_BTN": "Style",
+      "HOME_BTN": "Home",
+      "TECH_BTN": "Tech",
+      "TRAVEL_BTN": "Travel"
+    },
+
+    "SEARCH": {
+      "FILTER_BY_KEYWORD": "FILTER BY KEYWORD",
+      "SORT_BY": "SORT BY",
+      "WERE_SORRY": "We’re sorry! We couldn’t find any products that match your search.",
+      "TRY_AGAIN": "Try a more general term, check the spelling or jump to one of the categories below:",
+      "POINTS_LOW": "Points - low to high",
+      "POINTS_HIGH": "Points - high to low"
+    }
+  }
+  

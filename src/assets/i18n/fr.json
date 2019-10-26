@@ -1,0 +1,33 @@
+{
+    "GLOBAL": {
+      "LOGO": "/assets/amex-membershiprewards-logo_FR.svg",
+      "LOGO_ALT": "Membership Rewards",
+      "LOGO_FOOTER": "/assets/amex-DLLWI_FR.png",
+      "LOGO_FOOTER_ALT": "Ne profitez pas de la vie sans elle"
+    },
+    "HOME": {
+      "TITLE": "Bonjour Angular avec ngx-translate !",
+      "SELECT": "Changer la langue",
+      "SEARCH_TEXT": "sds",
+      "HERO_1": "NE",
+      "HERO_2": "SANS ELLE.",
+      "HERO_3": "Parce qu’il n’y a rien de mieux que de trouver le cadeau parfait.",
+      "VIEW_ALL_BTN": "Consulter tous les produits",
+      "STYLE_BTN": "Style",
+      "HOME_BTN": "Maison",
+      "TECH_BTN": "Technologie",
+      "TRAVEL_BTN": "Voyages"
+    },
+
+    "SEARCH": {
+      "FILTER_BY_KEYWORD": "FILTRER PAR MOT-CLÉ",
+      "SORT_BY": "TRIER PAR",
+      "WERE_SORRY": "Nous sommes désolés. Aucun produit ne correspond à votre recherche.",
+      "TRY_AGAIN": "Relancez la recherche avec un terme plus général, vérifiez l’orthographe ou consultez l’une des catégories ci-dessous:",
+      "POINTS_LOW": "Points – bas à élevé",
+      "POINTS_HIGH": "Points - élevé à bas"
+
+
+
+    }
+  }

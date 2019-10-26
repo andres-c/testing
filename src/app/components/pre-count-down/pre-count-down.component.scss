@@ -1,0 +1,343 @@
+
+  
+  
+  .section-padding {
+    padding: 2em;
+  }
+
+  @media (max-width: 600px) {
+    .section-padding {
+      padding: 0.5em;
+    }
+  }
+  
+  
+  /* ************************************************ */
+  /* ************************************************ */
+  
+  /* Weekly Deals Styles */
+  
+  /* ************************************************ */
+  /* ************************************************ */
+  
+    .surprise-savings {
+      color: #ffffff;
+      // padding-top: 4em;
+    }
+  
+    
+    .surprise-savings h2 {
+      // font-family: "Benton Sans Lt", Helvetica, Arial, san-serif;
+      font-family: benton-sans, helvetica, arial, sans-serif;
+      font-weight: 300; //Light
+      display: block;
+      width: 100%;
+      max-width: 550px;
+      margin: 0 auto 1rem auto;
+      color: #ffffff;
+      text-align: center;
+      letter-spacing: 0.3rem;
+      font-size: 1.75rem;
+      line-height: 1.2;
+    }
+    
+      /* Surprise Savings - Home Page */
+    .surprise-savings .savings-grid {
+      text-align: center;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding-top: 1rem;
+      font-size: 0.7rem;
+    }
+  
+    .surprise-savings .savings-grid li {
+      display: inline-block;
+      width: 100%;
+      border: 2px solid #3E3E3E;
+      margin: 1.1rem 0;
+      padding: 0 1rem 1.5rem 1rem;
+      text-align: center;
+      // font-family: "Benton Sans Lt", Helvetica, Arial, san-serif;
+      font-family: benton-sans, helvetica, arial, sans-serif;
+      font-weight: 300; //Light
+      transition: transform 300ms ease-in-out;
+      vertical-align: middle;
+    }
+    .surprise-savings .savings-grid li a {
+      color: #FFFFFF;
+      text-decoration: none;
+    }
+    .surprise-savings .savings-grid li:hover {
+      transform: scale(1.05);
+      cursor: pointer;
+    }
+  
+    .surprise-savings .savings-grid li.active {
+      border: 2px solid #006FCF;
+      background-color: #006FCF;
+    }
+  
+  
+    .surprise-savings .savings-grid li button {
+      border: 1px solid #FFFFFF;
+      margin-top: 0.5rem;
+      padding: 7px 25px;
+      height: 35px;
+    }
+  
+    .surprise-savings .savings-grid li p.timer {
+      font-size: 80%;
+      border-top: 1px solid #FFFFFF;
+      margin-top: 1rem;
+      padding-top: 0.6rem;
+    }
+    .surprise-savings .savings-grid li p.timer span.number {
+      font-weight: bold;
+      font-size: 1rem;
+      display: inline-block;
+      // font-family: "Benton Sans Med", Helvetica, Arial, san-serif;
+      font-family: benton-sans, helvetica, arial, sans-serif;
+      font-weight: 600; //Med
+    }
+  
+  
+  
+    /* Surprise Savings Complete */
+    .surprise-savings .savings-grid li.past {
+      position: relative;
+      opacity: 0.3;
+      border: 2px solid rgba(255,255,255,0.6);
+    }
+  
+  
+    .savings-grid li h4 {
+      display: block;
+      width: 7.5rem;
+      margin: 0 auto;
+      padding: 0.2rem 1rem 0 1rem;
+      transform: translateY(-50%);
+      background-color: #000000;
+      // font-size: 1.1rem;
+      // font-family: "Benton Sans Med", Helvetica, Arial, san-serif;
+      font-family: benton-sans, helvetica, arial, sans-serif;
+      font-weight: 600; //Med
+      letter-spacing: 0rem;
+      color: #ffffff;
+    }
+    .fr .savings-grid li h4 {
+      width: 9.5rem;
+    }
+  
+    .savings-grid li .to,
+    .savings-grid li .date {
+      display: inline-block;
+      width: 25%;
+      vertical-align: middle;
+    }
+    .savings-grid li .date {
+      width: 35%;
+      text-transform: uppercase;
+    }
+    .savings-grid li .date span {
+      display: block;
+      font-size: calc(40px + (57 - 40) * ( (100vw - 320px)/(1200 - 320) ) );
+      letter-spacing: -0.25rem;
+      position: relative;
+      line-height: 100%;
+      padding-right: 0.8rem;
+    }
+    .fr .savings-grid li .date span {
+      padding-right: 0rem;
+      padding-left: 1rem;
+    }
+    .savings-grid li .date span sup {
+      font-size: 30%;
+      display: inline-block;
+      vertical-align: unset;
+      position: absolute;
+      line-height: 100%;
+      top: 0.1rem;
+      letter-spacing: 0;
+    }
+    .fr .savings-grid li .date span sup {
+      left: 0em;
+      top: 0.2rem;
+    }
+    .fr .savings-grid li:first-child .date span,
+    .fr .savings-grid li:last-child .date span {
+      padding-left: 0; 
+    }
+    .fr .savings-grid li:first-child .date sup,
+    .fr .savings-grid li:last-child .date sup {
+      left: 0.6em;
+    }
+  
+  
+    /* TO */
+      .savings-grid li .to {
+        background-size: contain;
+        height: 55px;
+      }
+      .savings-grid li .to div {
+        height: 50px;
+        width: 50px;
+        padding: 12px 0 20px 0;
+        border: 2px solid #3E3E3E;
+        border-radius: 30px;
+        margin: 0 auto;
+        color: #ffffff;
+        // font-family: "Benton Sans Reg", sans-serif;
+        font-family: benton-sans, helvetica, arial, sans-serif;
+        font-weight: 400; //Light
+      }
+      .savings-grid li.active .to div {
+        border: 2px solid #FFFFFF;
+      }
+      .savings-grid li.past .to div {
+        border: 2px solid rgba(255,255,255,0.6);
+      }
+  
+  
+    @media (max-width: 400px) {
+      .savings-grid li .date {
+        font-size: 0.80rem;
+        letter-spacing: 0.13rem;
+      }
+    }
+  
+    @media (min-width: 716px) {
+      .surprise-savings .savings-grid li {
+        width: calc(50% - 0.65rem);
+        margin: 1rem 0.5rem;
+      }
+      .surprise-savings .savings-grid li:nth-child(odd) {
+        margin-left: 0;
+      }
+      .surprise-savings .savings-grid li:nth-child(even) {
+        margin-right: 0;
+      }
+    }
+    @media (min-width: 970px) {
+      .surprise-savings .savings-grid li {
+        width: calc(33.2% - 0.81rem);
+        margin: 1rem 0.5rem;
+      }
+      .surprise-savings .savings-grid li:nth-child(odd),
+      .surprise-savings .savings-grid li:nth-child(even) {
+        margin: 1rem 0.5rem;
+      }
+      .surprise-savings .savings-grid li:first-child {
+        margin-left: 0;
+      }
+      .surprise-savings .savings-grid li:nth-child(3) {
+        margin-right: 0;
+      }
+      
+    }
+    @media (min-width: 1400px) {
+      .surprise-savings .savings-grid {
+        max-width: 1400px;
+      }
+    }
+  
+  
+  
+  
+  
+
+    
+  
+    /* Early Countdown */
+    .surprise-savings .early_countdown {
+      color: #ffffff;
+      border: 2px solid #006FCF;
+      margin: 3.5rem auto 0.5rem auto !important;
+    }
+    .surprise-savings .early_countdown h2 {
+      display: block;
+      max-width: 580px;
+      width: 90%;
+      margin: 0 auto -3rem auto;
+      padding: 0.2rem 1rem 0 1rem;
+      transform: translateY(-80%);
+      background-color: #000000;
+      color: #ffffff;
+    }
+    .surprise-savings .early_countdown h2.pre-count-header-fr {
+      max-width: 792px !important;
+    }
+  
+    
+    @media (max-width: 600px) {
+      .surprise-savings .early_countdown h2 {
+        width: 82%;
+        margin: 0 auto -3rem auto;
+        padding: 0.2rem 0.5rem 0 1rem;
+      }
+    }
+
+    .surprise-savings .early_countdown_timer {
+      display: flex;
+      vertical-align: top;
+      justify-content: center;
+      text-align: center;
+      padding: 0rem 2rem 4rem 2rem;
+    }
+
+    @media (max-width: 600px) {
+      .surprise-savings .early_countdown_timer {
+        padding: 0rem 0.5rem 4rem 0.5rem;
+      }
+    }
+
+
+    .surprise-savings .early_countdown_timer .early_countdown_time {
+      width: auto;
+      padding: 0 1.6rem;
+      font-size: 1rem;
+    }
+    .surprise-savings .early_countdown_timer .divider,
+    .surprise-savings .early_countdown_timer .early_countdown_time span.number {
+      font-size: 5rem;
+      font-size: 9vw;
+      // font-family: "Benton Sans Lt", Helvetica, Arial, san-serif;
+      font-family: benton-sans, helvetica, arial, sans-serif;
+      font-weight: 300; //Light
+      display: flex;
+      justify-content: center;
+    }
+  
+    @media screen and (max-width: 900px) {
+      .surprise-savings .early_countdown_timer .early_countdown_time {
+        padding: 0 0.8rem;
+      }
+    }
+   
+    @media screen and (max-width: 600px) {
+      .surprise-savings .early_countdown h2 {
+        font-size: 171%;
+      }
+      .surprise-savings .early_countdown_timer .early_countdown_time {
+        font-size: 90%;
+        padding: 0 3%;
+      }
+    }
+    @media screen and (max-width: 480px) {
+      .surprise-savings .early_countdown h2 {
+        font-size: 171%;
+        transform: translateY(-65%);
+      }
+    }
+    
+
+    @media screen and (min-width: 1000px) {
+      .surprise-savings .early_countdown_timer .early_countdown_time {
+        padding: 0 0.5rem;
+      }
+      .surprise-savings .early_countdown_timer .divider,
+      .surprise-savings .early_countdown_timer .early_countdown_time span.number {
+        font-size: 7rem;
+        display: flex;
+      }
+    }
+  

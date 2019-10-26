@@ -1,0 +1,1015 @@
+<head>
+  <link rel="stylesheet" href="https://use.typekit.net/ahe0fig.css" />
+  <link
+    rel="stylesheet"
+    type="text/css"
+    href="//cloud.typenetwork.com/projects/1830/fontface.css/"
+  />
+</head>
+
+<body class="layout">
+  <div class="max-width">
+    <div class="top-search-bar" style="">
+      <!-- <div nz-col [nzSpan]="6"></div> -->
+
+      <div class="search-col">
+        <div>
+          <span class="copy-span dont">{{ "HOME.HERO_1" | translate }}</span>
+        </div>
+        <div class="search-div" #searchdiv>
+          <div style="width: -webkit-fill-available;" #cont2>
+            <input
+              maxlength="30"
+              autocomplete="off"
+              [fittext]="true"
+              [activateOnResize]="true"
+              [activateOnInputEvents]="true"
+              [container]="cont2"
+              [maxFontSize]="80"
+              [minFontSize]="20"
+              [modelToWatch]="filters.text_search"
+              id="homepage-input"
+              class="search-input"
+              style="font-size:66px;width: 100%;height: 100%;"
+              [(ngModel)]="filters.text_search"
+              (ngModelChange)="setFilters()"
+              (keyup.enter)="findAndSetPriority()"
+            />
+          </div>
+          <div
+            style="margin-left: 5vw;
+          display: block;"
+          >
+            <button class="search-btn" nz-button (click)="findAndSetPriority()">
+              <span
+                ><img alt="example" src="/assets/icons/reviewing-search.png"
+              /></span>
+            </button>
+          </div>
+        </div>
+        <div>
+          <span class="copy-span without">{{ "HOME.HERO_2" | translate }}</span>
+        </div>
+      </div>
+    </div>
+    <div
+      *ngIf="
+        (filtered_items && filtered_items.length > 0) ||
+        filtered_featured_items.length > 0
+      "
+      class="filter-container-div"
+    >
+      <div class="filter-container">
+        <div>
+          <label *ngIf="top_five.tag_five.length > 0" class="label mr-10"
+            >{{ "SEARCH.FILTER_BY_KEYWORD" | translate }}</label
+          >
+        </div>
+        <div
+          class="filter-btn-div"
+          *ngIf="top_five.tag_five.length > 0"
+          class="mb-10"
+        >
+          <nz-radio-group
+            [(ngModel)]="filters.tag"
+            [nzButtonStyle]="'solid'"
+            (ngModelChange)="setSelectedFilterText($event)"
+          >
+            <ng-container *ngFor="let tag of top_five.tags">
+              <label
+                *ngIf="tag.tags && tag.tags.length>0"
+                nz-radio-button
+                [nzValue]="tag.tags[0]"
+                [ngClass]="{ tag_one: tag.type === 'tag_one' }"
+                class="filter-btn"
+                [class]="'tag_' + tag.tags[0]"
+                >{{ tag.tags[0] }}</label
+              >
+            </ng-container>
+          </nz-radio-group>
+        </div>
+      </div>
+      <div class="">
+        <div class="sort-label">
+          <label class="label mr-10">{{ "SEARCH.SORT_BY" | translate }}</label>
+        </div>
+        <div>
+          <nz-select
+            style="width: 175px; margin-top: 3px;"
+            [(ngModel)]="order_by"
+            nzPlaceHolder="Points"
+            (ngModelChange)="sortResult()"
+          >
+            <nz-option
+              *ngIf="lang !== 'fr'"
+              nzValue="asc"
+              nzLabel="Points - low to high"
+            ></nz-option>
+            <nz-option
+              *ngIf="lang !== 'fr'"
+              nzValue="desc"
+              nzLabel="Points - high to low"
+            ></nz-option>
+            <nz-option
+              *ngIf="lang == 'fr'"
+              nzValue="asc"
+              nzLabel="Points – bas à élevé"
+            ></nz-option>
+            <nz-option
+              *ngIf="lang == 'fr'"
+              nzValue="desc"
+              nzLabel="Points - élevé à bas"
+            ></nz-option>
+          </nz-select>
+        </div>
+      </div>
+    </div>
+
+    <!-- no products found filter tag section -->
+    <div
+      *ngIf="
+        filtered_items &&
+        filtered_items.length == 0 &&
+        filtered_featured_items == 0
+      "
+      class="filter-container-div no-products-found"
+    >
+      <div class="filter-container">
+        <div class="sorry-header">
+          {{ "SEARCH.WERE_SORRY" | translate }}
+        </div>
+        <div class="sorry-desciprtion">
+          {{ "SEARCH.TRY_AGAIN" | translate }}
+        </div>
+        <div class="header-btns">
+          <div>
+            <button (click)="searchByProductCategory('style')">
+              <img src="/assets/icons/new/style-blue.png" />
+              {{ "HOME.STYLE_BTN" | translate }}
+            </button>
+          </div>
+          <div>
+            <button
+              *ngIf="lang == 'en'"
+              (click)="searchByProductCategory('home')"
+            >
+              <img src="/assets/icons/new/home-blue.png" />
+              {{ "HOME.HOME_BTN" | translate }}
+            </button>
+            <button
+              *ngIf="lang == 'fr'"
+              (click)="searchByProductCategory('maison')"
+            >
+              <img src="/assets/icons/new/home-blue.png" />
+              {{ "HOME.HOME_BTN" | translate }}
+            </button>
+          </div>
+          <div>
+            <button
+              *ngIf="lang == 'en'"
+              (click)="searchByProductCategory('tech')"
+            >
+              <img src="/assets/icons/new/tech-blue.png" />
+              {{ "HOME.TECH_BTN" | translate }}
+            </button>
+            <button
+              *ngIf="lang == 'fr'"
+              (click)="searchByProductCategory('technologie')"
+            >
+              <img src="/assets/icons/new/tech-blue.png" />
+              {{ "HOME.TECH_BTN" | translate }}
+            </button>
+          </div>
+          <div>
+            <button
+              *ngIf="lang == 'en'"
+              (click)="searchByProductCategory('travel')"
+            >
+              <img src="/assets/icons/new/travel-blue.png" />
+              {{ "HOME.TRAVEL_BTN" | translate }}
+            </button>
+            <button
+              *ngIf="lang == 'fr'"
+              (click)="searchByProductCategory('voyages')"
+            >
+              <img src="/assets/icons/new/travel-blue.png" />
+              {{ "HOME.TRAVEL_BTN" | translate }}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- product grid -->
+    <div class="black-bg">
+      <section class="section-padding products">
+        <div
+          *ngIf="
+            filtered_items &&
+            filtered_items.length > 4
+          "
+          class="product-grid"
+        >
+          <ng-container
+            *ngFor="
+              let items of filtered_items_chunk;
+              let i = index;
+              let last = last
+            "
+          >
+            <div
+              class="non-feature-product"
+              [ngClass]="{
+                fr: lang == 'fr',
+                wklyDeal: data.discounted_point_level
+              }"
+              *ngFor="let data of items"
+              [ngClass]="{
+                featured: data.featured_product,
+                weekly_deal: isInThisWeeksDeal(data.week_number)
+              }"
+            >
+              <a href="{{ data.url }}" target="_blank">
+                <div class="product-image">
+                  <img
+                    alt="example"
+                    src="assets/product-imgs/{{ data.img_id }}_.jpg"
+                  />
+                </div>
+                <div class="product-info">
+                  <div
+                    class="left-align product-name"
+                    [innerHTML]="data.product_name"
+                  ></div>
+                  <div
+                    *ngIf="!data.discounted_point_level"
+                    class="left-align product-points"
+                  >
+                    <div style="display: inline-block;">
+                      {{ data.regular_point_level }}
+                    </div>
+                    &nbsp;<span>points</span>
+                  </div>
+
+                  <div *ngIf="data.discounted_point_level && lang !== 'fr'">
+                    <div class="left-align product-points point-drop">
+                      NOW
+                      <div style="display: inline-block;">
+                        {{ data.discounted_point_level }} <span>points</span>
+                      </div>
+                    </div>
+                    <div class="left-align product-points-regular point-drop">
+                      Regular
+                      <div style="display: inline-block;">
+                        {{ data.regular_point_level }} points
+                      </div>
+                    </div>
+                  </div>
+                  <div *ngIf="data.discounted_point_level && lang == 'fr'">
+                    <div class="left-align product-points point-drop">
+                      MAINTENANT
+                      <div style="display: inline-block;">
+                        {{ data.discounted_point_level }} <span>points</span>
+                      </div>
+                    </div>
+                    <div class="left-align product-points-regular point-drop">
+                      NORMALEMENT
+                      <div style="display: inline-block;">
+                        {{ data.regular_point_level }} points
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </div>
+
+            <div
+              *ngIf="!isLastOrEvenIndex(i); else offerblock"
+              class="feature-product"
+            >
+              <div *ngIf="filtered_featured_items[i]; let data">
+                <!-- changes on gc  : user page_type here in *ngIf-->
+                <!-- <h1 *ngIf="page_type=='business'"> Business GC </h1>
+                <h1 *ngIf="lang=='fr'"> Business FR </h1> -->
+
+                <a href="{{ data.url }}" target="_blank">
+                  <div class="feature-background">
+                    <div *ngIf="page_type !== 'business'" class="copy">
+                      {{ data.feature_copy }}
+                    </div>
+                    <div *ngIf="page_type == 'business'" class="copy">
+                      {{ data.feature_copy_gcs }}
+                    </div>
+                    <img
+                      *ngIf="page_type !== 'business'"
+                      class="desktop-img"
+                      src="assets/feature/backgrounds/{{ data.img_id }}.jpg"
+                      height="255"
+                    />
+                    <img
+                      *ngIf="page_type == 'business'"
+                      class="desktop-img"
+                      src="assets/feature/backgrounds_gcs/{{ data.img_id }}.jpg"
+                      height="255"
+                    />
+                    <img
+                      *ngIf="page_type !== 'business'"
+                      class="mobile-img"
+                      src="assets/feature/backgrounds/{{ data.img_id }}_.jpg"
+                      height="255"
+                    />
+                    <img
+                      *ngIf="page_type == 'business'"
+                      class="mobile-img"
+                      src="assets/feature/backgrounds_gcs/{{
+                        data.img_id
+                      }}_.jpg"
+                      height="255"
+                    />
+                  </div>
+                  <div class="feature-info">
+                    <div class="feature-description">
+                      <p>{{ data.product_description }}</p>
+                    </div>
+
+                    <div class="feature-product-img">
+                      <img
+                        src="assets/feature/products/{{ data.img_id }}.png"
+                      />
+                    </div>
+
+                    <div class="product-info">
+                      <div
+                        class="product-name"
+                        [innerHTML]="data.product_name"
+                      ></div>
+                      <div class="product-points">
+                        <div style="display: inline-block;">
+                          {{ data.regular_point_level }}
+                        </div>
+                        &nbsp;<span>points</span>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            </div>
+            <ng-template class="feature-product" #offerblock>
+              <div *ngIf="offer" nz-row class="fullWidthOffer">
+                <div nz-col nzSpan="24" *ngIf="offer">
+                  <nz-card
+                    class="mb-15 mt-15"
+                    [nzBodyStyle]="{
+                      textAlign: 'center'
+                    }"
+                    class="offer"
+                  >
+                    <div class="border_wrap">
+                      <div class="weekIdentifier">
+                        <div class="weekIdentifier_graphic">
+                          <h2 class="">{{ offer.offer_form | uppercase }}</h2>
+                          <span>{{ offer.week_number }}</span>
+                        </div>
+                      </div>
+                      <div class="weeklyIdentifier_content">
+                        <h4 *ngIf="lang == 'en'">
+                          {{ offer.start_date_str.month | uppercase }}&nbsp;{{
+                          offer.start_date_str.date }}<sup
+                            >{{ offer.start_date_str.ordinal }}</sup
+                          >
+                          TO {{ offer.end_date_str.month | uppercase }}&nbsp;{{
+                          offer.end_date_str.date }}<sup
+                            >{{ offer.end_date_str.ordinal }}</sup
+                          >
+                        </h4>
+                        <h4 *ngIf="lang !== 'en'">
+                          {{ offer.start_date_str.ordinal | uppercase }}&nbsp;{{
+                          offer.start_date_str.date }}&nbsp;{{
+                          offer.start_date_str.month | uppercase }} AU {{
+                          offer.end_date_str.ordinal | uppercase }}&nbsp;{{
+                          offer.end_date_str.date }}&nbsp;{{
+                          offer.end_date_str.month | uppercase }}
+                        </h4>
+
+                        <h2 *ngIf="lang == 'en'">
+                          THE BEST POINT DROP OFFERS OF THE SEASON
+                        </h2>
+                        <h2 *ngIf="lang !== 'en'">
+                          LES MEILLEURES OFFRES DE CHUTES <br />DE POINTS DE LA
+                          SAISON
+                        </h2>
+
+                        <button
+                          *ngIf="lang == 'en'"
+                          nz-button
+                          [nzType]="'primary'"
+                          (click)="showModal()"
+                        >
+                          View offers
+                        </button>
+                        <button
+                          *ngIf="lang !== 'en'"
+                          nz-button
+                          [nzType]="'primary'"
+                          (click)="showModal()"
+                        >
+                          Consulter les offres
+                        </button>
+                      </div>
+                    </div>
+                  </nz-card>
+                </div>
+              </div>
+            </ng-template>
+          </ng-container>
+        </div>
+        <div
+          *ngIf="
+            filtered_items &&
+            5 > filtered_items.length 
+          "
+          class="product-grid"
+        >
+          <ng-container
+            *ngFor="
+              let items of filtered_items_chunk;
+              let i = index;
+              let last = last
+            "
+          >
+            <div
+              *ngIf="!isLastOrEvenIndex(i); else offerblock"
+              class="feature-product"
+            >
+              <div *ngIf="filtered_featured_items[i]; let data">
+                <!-- changes on gc  : user page_type here in *ngIf-->
+                <!-- <h1 *ngIf="page_type=='business'"> Business GC </h1>
+            <h1 *ngIf="lang=='fr'"> Business FR </h1> -->
+
+                <a href="{{ data.url }}" target="_blank">
+                  <div class="feature-background">
+                    <div *ngIf="page_type !== 'business'" class="copy">
+                      {{ data.feature_copy }}
+                    </div>
+                    <div *ngIf="page_type == 'business'" class="copy">
+                      {{ data.feature_copy_gcs }}
+                    </div>
+                    <img
+                      *ngIf="page_type !== 'business'"
+                      class="desktop-img"
+                      src="assets/feature/backgrounds/{{ data.img_id }}.jpg"
+                      height="255"
+                    />
+                    <img
+                      *ngIf="page_type == 'business'"
+                      class="desktop-img"
+                      src="assets/feature/backgrounds_gcs/{{ data.img_id }}.jpg"
+                      height="255"
+                    />
+                    <img
+                      *ngIf="page_type !== 'business'"
+                      class="mobile-img"
+                      src="assets/feature/backgrounds/{{ data.img_id }}_.jpg"
+                      height="255"
+                    />
+                    <img
+                      *ngIf="page_type == 'business'"
+                      class="mobile-img"
+                      src="assets/feature/backgrounds_gcs/{{
+                    data.img_id
+                  }}_.jpg"
+                      height="255"
+                    />
+                  </div>
+                  <div class="feature-info">
+                    <div class="feature-description">
+                      <p>{{ data.product_description }}</p>
+                    </div>
+
+                    <div class="feature-product-img">
+                      <img
+                        src="assets/feature/products/{{ data.img_id }}.png"
+                      />
+                    </div>
+
+                    <div class="product-info">
+                      <div
+                        class="product-name"
+                        [innerHTML]="data.product_name"
+                      ></div>
+                      <div class="product-points">
+                        <div style="display: inline-block;">
+                          {{ data.regular_point_level }}
+                        </div>
+                        &nbsp;<span>points</span>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            </div>
+            <div
+              class="non-feature-product"
+              [ngClass]="{
+                fr: lang == 'fr',
+                wklyDeal: data.discounted_point_level
+              }"
+              *ngFor="let data of items"
+              [ngClass]="{
+                featured: data.featured_product,
+                weekly_deal: isInThisWeeksDeal(data.week_number)
+              }"
+            >
+              <a href="{{ data.url }}" target="_blank">
+                <div class="product-image">
+                  <img
+                    alt="example"
+                    src="assets/product-imgs/{{ data.img_id }}_.jpg"
+                  />
+                </div>
+                <div class="product-info">
+                  <div
+                    class="left-align product-name"
+                    [innerHTML]="data.product_name"
+                  ></div>
+                  <div
+                    *ngIf="!data.discounted_point_level"
+                    class="left-align product-points"
+                  >
+                    <div style="display: inline-block;">
+                      {{ data.regular_point_level }}
+                    </div>
+                    &nbsp;<span>points</span>
+                  </div>
+
+                  <div *ngIf="data.discounted_point_level && lang !== 'fr'">
+                    <div class="left-align product-points point-drop">
+                      NOW
+                      <div style="display: inline-block;">
+                        {{ data.discounted_point_level }} <span>points</span>
+                      </div>
+                    </div>
+                    <div class="left-align product-points-regular point-drop">
+                      Regular
+                      <div style="display: inline-block;">
+                        {{ data.regular_point_level }} points
+                      </div>
+                    </div>
+                  </div>
+                  <div *ngIf="data.discounted_point_level && lang == 'fr'">
+                    <div class="left-align product-points point-drop">
+                      MAINTENANT
+                      <div style="display: inline-block;">
+                        {{ data.discounted_point_level }} <span>points</span>
+                      </div>
+                    </div>
+                    <div class="left-align product-points-regular point-drop">
+                      NORMALEMENT
+                      <div style="display: inline-block;">
+                        {{ data.regular_point_level }} points
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </div>
+
+            <ng-template class="feature-product" #offerblock>
+              <div *ngIf="offer" nz-row class="fullWidthOffer">
+                <div nz-col nzSpan="24" *ngIf="offer">
+                  <nz-card
+                    class="mb-15 mt-15"
+                    [nzBodyStyle]="{
+                      textAlign: 'center'
+                    }"
+                    class="offer"
+                  >
+                    <div class="border_wrap">
+                      <div class="weekIdentifier">
+                        <div class="weekIdentifier_graphic">
+                          <h2 class="">{{ offer.offer_form | uppercase }}</h2>
+                          <span>{{ offer.week_number }}</span>
+                        </div>
+                      </div>
+                      <div class="weeklyIdentifier_content">
+                        <h4 *ngIf="lang == 'en'">
+                          {{ offer.start_date_str.month | uppercase }}&nbsp;{{
+                          offer.start_date_str.date }}<sup
+                            >{{ offer.start_date_str.ordinal }}</sup
+                          >
+                          TO {{ offer.end_date_str.month | uppercase }}&nbsp;{{
+                          offer.end_date_str.date }}<sup
+                            >{{ offer.end_date_str.ordinal }}</sup
+                          >
+                        </h4>
+                        <h4 *ngIf="lang !== 'en'">
+                          {{ offer.start_date_str.ordinal | uppercase }}&nbsp;{{
+                          offer.start_date_str.date }}&nbsp;{{
+                          offer.start_date_str.month | uppercase }} AU {{
+                          offer.end_date_str.ordinal | uppercase }}&nbsp;{{
+                          offer.end_date_str.date }}&nbsp;{{
+                          offer.end_date_str.month | uppercase }}
+                        </h4>
+
+                        <h2 *ngIf="lang == 'en'">
+                          THE BEST POINT DROP OFFERS OF THE SEASON
+                        </h2>
+                        <h2 *ngIf="lang !== 'en'">
+                          LES MEILLEURES OFFRES DE CHUTES <br />DE POINTS DE LA
+                          SAISON
+                        </h2>
+
+                        <button
+                          *ngIf="lang == 'en'"
+                          nz-button
+                          [nzType]="'primary'"
+                          (click)="showModal()"
+                        >
+                          View offers
+                        </button>
+                        <button
+                          *ngIf="lang !== 'en'"
+                          nz-button
+                          [nzType]="'primary'"
+                          (click)="showModal()"
+                        >
+                          Consulter les offres
+                        </button>
+                      </div>
+                    </div>
+                  </nz-card>
+                </div>
+              </div>
+            </ng-template>
+          </ng-container>
+        </div>
+        <!-- Only feature product, no other product in search -->
+        <!-- <ng-container #onlyfeatureblock *ngIf="filtered_featured_items.length > 0"> -->
+        <div
+          *ngIf="
+            filtered_items &&
+            filtered_items.length === 0 &&
+            filtered_featured_items.length > 0
+          "
+          class="product-grid"
+        >
+          <div
+            class="feature-product"
+            *ngFor="let data of filtered_featured_items"
+            [ngClass]="{
+              featured: data.featured_product,
+              weekly_deal: isInThisWeeksDeal(data.week_number)
+            }"
+          >
+            <div>
+              <a href="{{ data.url }}" target="_blank">
+                <div class="feature-background">
+                  <div *ngIf="page_type !== 'business'" class="copy">
+                    {{ data.feature_copy }}
+                  </div>
+                  <div *ngIf="page_type == 'business'" class="copy">
+                    {{ data.feature_copy_gcs }}
+                  </div>
+                  <img
+                    *ngIf="page_type !== 'business'"
+                    class="desktop-img"
+                    src="assets/feature/backgrounds/{{ data.img_id }}.jpg"
+                    height="255"
+                  />
+                  <img
+                    *ngIf="page_type == 'business'"
+                    class="desktop-img"
+                    src="assets/feature/backgrounds_gcs/{{ data.img_id }}.jpg"
+                    height="255"
+                  />
+                  <img
+                    *ngIf="page_type !== 'business'"
+                    class="mobile-img"
+                    src="assets/feature/backgrounds/{{ data.img_id }}_.jpg"
+                    height="255"
+                  />
+                  <img
+                    *ngIf="page_type == 'business'"
+                    class="mobile-img"
+                    src="assets/feature/backgrounds_gcs/{{ data.img_id }}_.jpg"
+                    height="255"
+                  />
+                </div>
+
+                <div class="feature-info">
+                  <div class="feature-description">
+                    <p>{{ data.product_description }}</p>
+                  </div>
+
+                  <div class="feature-product-img">
+                    <img src="assets/feature/products/{{ data.img_id }}.png" />
+                  </div>
+
+                  <div class="product-info">
+                    <div
+                      class="product-name"
+                      [innerHTML]="data.product_name"
+                    ></div>
+                    <div class="product-points">
+                      <div style="display: inline-block;">
+                        {{ data.regular_point_level }}
+                      </div>
+                      &nbsp;<span>points</span>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- no products found -->
+        <div
+          *ngIf="
+            (filtered_items &&
+              filtered_items.length == 0 &&
+              filtered_featured_items == 0) 
+          "
+          class="product-grid"
+        >
+          <div class="feature-product" *ngIf="random_featured_item">
+            <div *ngIf="lang == 'en'" class="no-results-feature-headline">
+              <h3>There’s plenty more where this came from:</h3>
+            </div>
+            <div *ngIf="lang !== 'en'" class="no-results-feature">
+              <h3>
+                Il y a beaucoup plus d’offres dans les Services en ligne et dans
+                l’application.
+              </h3>
+            </div>
+            <div>
+              <a href="{{ random_featured_item.url }}" target="_blank">
+                <div class="feature-background">
+                  <div *ngIf="page_type !== 'business'" class="copy">
+                    {{ random_featured_item.feature_copy }}
+                  </div>
+                  <div *ngIf="page_type == 'business'" class="copy">
+                    {{ random_featured_item.feature_copy_gcs }}
+                  </div>
+                  <img
+                    *ngIf="page_type !== 'business'"
+                    class="desktop-img"
+                    src="assets/feature/backgrounds/{{
+                      random_featured_item.img_id
+                    }}.jpg"
+                    height="255"
+                  />
+                  <img
+                    *ngIf="page_type == 'business'"
+                    class="desktop-img"
+                    src="assets/feature/backgrounds_gcs/{{
+                      random_featured_item.img_id
+                    }}.jpg"
+                    height="255"
+                  />
+                  <img
+                    *ngIf="page_type !== 'business'"
+                    class="mobile-img"
+                    src="assets/feature/backgrounds/{{
+                      random_featured_item.img_id
+                    }}_.jpg"
+                    height="255"
+                  />
+                  <img
+                    *ngIf="page_type == 'business'"
+                    class="mobile-img"
+                    src="assets/feature/backgrounds_gcs/{{
+                      random_featured_item.img_id
+                    }}_.jpg"
+                    height="255"
+                  />
+                </div>
+
+                <div class="feature-info">
+                  <div class="feature-description">
+                    <p>{{ random_featured_item.product_description }}</p>
+                  </div>
+
+                  <div class="feature-product-img">
+                    <img
+                      src="assets/feature/products/{{
+                        random_featured_item.img_id
+                      }}.png"
+                    />
+                  </div>
+
+                  <div class="product-info">
+                    <div
+                      class="product-name"
+                      [innerHTML]="random_featured_item.product_name"
+                    ></div>
+                    <div class="product-points">
+                      <div style="display: inline-block;">
+                        {{ random_featured_item.regular_point_level }}
+                      </div>
+                      &nbsp;<span>points</span>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+    <section class="bottomCTA">
+      <div *ngIf="lang == 'en'">
+        <h2>
+          FIND MORE HOLIDAY GIFTS AND MERCHANDISE AT MEMBERSHIPREWARDS.CA
+        </h2>
+        <a href="http://www.membershiprewards.ca" target="_blank">Go explore</a>
+      </div>
+      <div *ngIf="lang !== 'en'">
+        <h2>
+          TROUVEZ PLUS DE CADEAUX ET D’ARTICLES POUR LES FÊTES À
+          POINTSPRIVILEGES.CA
+        </h2>
+        <a href="http://www.pointsprivileges.ca" target="_blank">Explorer</a>
+      </div>
+    </section>
+  </div>
+</body>
+
+<nz-modal
+  [nzStyle]="{ top: '20px' }"
+  [nzWidth]="880"
+  [(nzVisible)]="isVisible"
+  (nzOnCancel)="handleCancel()"
+  (nzOnOk)="handleOk()"
+>
+  <ng-container *ngIf="offer">
+    <div class="modal-gradient">
+      <div><img src="/assets/nav-bg.png" /></div>
+    </div>
+    <div class="offer-modal">
+      <span *ngIf="lang !== 'fr'" id="brand">
+        <img
+          (click)="handleCancel()"
+          class="logo-navbar"
+          src="/assets/amex-membershiprewards-logo_EN.svg"
+          alt=""
+        />
+      </span>
+      <span *ngIf="lang == 'fr'" id="brand">
+        <img
+          (click)="handleCancel()"
+          class="logo-navbar"
+          src="/assets/amex-membershiprewards-logo_FR.svg"
+          alt=""
+        />
+      </span>
+
+      <div class="border_wrap">
+        <div class="weekIdentifier">
+          <div class="weekIdentifier_graphic">
+            <h2 class="">{{ offer.offer_form | uppercase }}</h2>
+            <span>{{ offer.week_number }}</span>
+          </div>
+        </div>
+
+        <div class="weeklyIdentifier_content">
+          <h2 *ngIf="lang !== 'fr'">THIS WEEK&rsquo;S POINT DROP OFFERS</h2>
+          <h2 *ngIf="lang == 'fr'">
+            LES OFFRES DE CHUTE DE POINTS DE&nbsp;LA&nbsp;SEMAINE
+          </h2>
+
+          <p *ngIf="lang !== 'fr'" class="text-center">
+            Find a selection of great gifts for less points &ndash; offer ends
+            {{ offer.end_date_str.month }} {{ offer.end_date_str.date }}<sup
+              >{{ offer.end_date_str.ordinal }}</sup
+            >, 2019.
+          </p>
+          <p *ngIf="lang == 'fr'" class="text-center">
+            Trouvez une sélection d’excellents cadeaux pour moins de points –
+            l’offre prend fin le {{ offer.end_date_str.date }} {{
+            offer.end_date_str.month }} 2019.
+          </p>
+        </div>
+
+        <div class="product-grid">
+          <div
+            class="non-feature-product"
+            [ngClass]="{ fr: lang == 'fr' }"
+            *ngFor="let data of this_weeks_offer_products"
+          >
+            <a href="{{ data.url }}" target="_blank">
+              <div class="product-image">
+                <img
+                  alt="example"
+                  src="assets/product-imgs/{{ data.img_id }}_.jpg"
+                />
+              </div>
+              <div class="product-info">
+                <div
+                  class="left-align product-name"
+                  [innerHTML]="data.product_name"
+                ></div>
+                <div *ngIf="lang !== 'fr'">
+                  <div class="left-align product-points">
+                    NOW
+                    <div style="display: inline-block;">
+                      {{ data.discounted_point_level }} <span>points</span>
+                    </div>
+                  </div>
+                  <div class="left-align product-points-regular">
+                    Regular
+                    <div style="display: inline-block;">
+                      {{ data.regular_point_level }} points
+                    </div>
+                  </div>
+                </div>
+                <div *ngIf="lang == 'fr'">
+                  <div class="left-align product-points">
+                    MAINTENANT
+                    <div style="display: inline-block;">
+                      {{ data.discounted_point_level }} <span>points</span>
+                    </div>
+                  </div>
+                  <div class="left-align product-points-regular">
+                    NORMALEMENT
+                    <div style="display: inline-block;">
+                      {{ data.regular_point_level }} points
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+      <!-- End Border Wrap -->
+
+      <div
+        *ngIf="next_week_offer != undefined"
+        class="surprise-savings modal-bottom-deals"
+      >
+        <ul class="savings-grid">
+          <!-- to show an active status add the class "active" -->
+          <!-- to show an past status add the class "past" -->
+
+          <li class="">
+            <div class="cal-item">
+              <h4>
+                {{ next_week_offer.offer_form | uppercase }} {{
+                next_week_offer.week_number }}
+              </h4>
+              <div *ngIf="lang !== 'fr'">
+                <div class="date">
+                  {{ next_week_offer.start_date_str.month | uppercase }}<span
+                    >{{ next_week_offer.start_date_str.date }}<sup
+                      >{{ next_week_offer.start_date_str.ordinal }}</sup
+                    ></span
+                  >
+                </div>
+
+                <div class="to"><div>TO</div></div>
+
+                <div class="date">
+                  {{ next_week_offer.end_date_str.month | uppercase }}
+                  <span
+                    >{{ next_week_offer.end_date_str.date }}<sup
+                      >{{ next_week_offer.end_date_str.ordinal }}</sup
+                    ></span
+                  >
+                </div>
+              </div>
+
+              <div *ngIf="lang == 'fr'">
+                <div class="date fr">
+                  <span>
+                    <sup>{{ next_week_offer.start_date_str.ordinal }}</sup>{{
+                    next_week_offer.start_date_str.date }}
+                  </span>
+                  {{ next_week_offer.start_date_str.month | uppercase }}
+                </div>
+
+                <div class="to"><div>AU</div></div>
+
+                <div class="date">
+                  <span>
+                    {{ next_week_offer.end_date_str.date }}<sup
+                      >{{ next_week_offer.end_date_str.ordinal }}</sup
+                    >
+                  </span>
+                  {{ next_week_offer.end_date_str.month | uppercase }}
+                </div>
+              </div>
+
+              <p class="timer">
+                <app-count-down-timer
+                  class="deadline"
+                  [deadline]="getDeadline(next_week_offer.start_date)"
+                ></app-count-down-timer>
+              </p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </ng-container>
+</nz-modal>

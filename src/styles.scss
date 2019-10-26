@@ -1,0 +1,53 @@
+/* You can add global styles to this file, and also import other style files */
+.m {
+  &-5 {
+    margin: 5px !important;
+  }
+  &-10 {
+    margin: 5px !important;
+  }
+  &-15 {
+    margin: 5px !important;
+  }
+  &t {
+    &-5 {
+      margin-top: 5px !important;
+    }
+    &-10 {
+      margin-top: 5px !important;
+    }
+    &-15 {
+      margin-top: 5px !important;
+    }
+  }
+  &b {
+    &-5 {
+      margin-bottom: 5px !important;
+    }
+    &-10 {
+      margin-bottom: 5px !important;
+    }
+    &-15 {
+      margin-bottom: 5px !important;
+    }
+  }
+  &r {
+    &-5 {
+      margin-right: 5px !important;
+    }
+    &-10 {
+      margin-right: 5px !important;
+    }
+    &-15 {
+      margin-right: 5px !important;
+    }
+  }
+}
+
+
+body,
+html {
+  margin: 0;
+  padding: 0;
+  height: 0;
+}

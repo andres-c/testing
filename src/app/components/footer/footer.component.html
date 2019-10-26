@@ -1,0 +1,364 @@
+<footer class="pg-footer">
+  <div class="tagline">
+    <div *ngIf="pagetype!=='business' && selectedValue!=='fr'">
+      <h6>
+        <img src="/assets/amex-DLLWI_EN.png" alt="Don’t live life without it" />
+      </h6>
+    </div>
+    <div *ngIf="pagetype!=='business' && selectedValue=='fr'">
+      <h6>
+        <img
+          class="fr"
+          src="/assets/amex-DLLWI_FR.png"
+          alt="Ne profitez pas de la vie sans elle"
+        />
+      </h6>
+    </div>
+    <div *ngIf="pagetype=='business' && selectedValue!=='fr'">
+      <h6>
+        <img
+          src="/assets/amex-DDBWI_EN.png"
+          alt="Don’t do business without it"
+        />
+      </h6>
+    </div>
+    <div *ngIf="pagetype=='business' && selectedValue=='fr'">
+      <h6>
+        <img
+          class="fr"
+          src="/assets/amex-DDBWI_FR.png"
+          alt="Ne faites pas d’affaires sans elle"
+        />
+      </h6>
+    </div>
+  </div>
+  <nav>
+    <a *ngIf="selectedValue!=='fr'" (click)="showModal()">Terms & Conditions</a>
+    <a *ngIf="selectedValue=='fr'" (click)="showModal()">Modalités</a>
+    <a *ngIf="selectedValue!=='fr'" (click)="changeLanguage('fr')">Français</a>
+    <a *ngIf="selectedValue=='fr'" (click)="changeLanguage('en')">English</a>
+
+    <h5 *ngIf="selectedValue!=='fr'" class="mr-logo">
+      Membership&nbsp;Rewards
+    </h5>
+    <h5 *ngIf="selectedValue=='fr'" class="mr-logo fr">
+      Membership&nbsp;Rewards
+    </h5>
+  </nav>
+</footer>
+
+<nz-modal
+  [nzStyle]="{ top: '20px' }"
+  [nzWidth]="900"
+  [(nzVisible)]="isVisible"
+  (nzOnCancel)="handleCancel()"
+  (nzOnOk)="handleOk()"
+>
+  <div class="offer-modal">
+    <div class="modal-gradient">
+      <div><img src="/assets/nav-bg.png" /></div>
+    </div>
+    <div *ngIf="selectedValue!=='fr'">
+      <span id="brand">
+        <img
+          class="logo-navbar"
+          src="/assets/amex-membershiprewards-logo_EN.svg"
+          alt=""
+        />
+      </span>
+
+      <div class="border_wrap">
+        <div class="weeklyIdentifier_content">
+          <h2>Terms &amp; Conditions</h2>
+        </div>
+
+        <div class="legal_content">
+          <p>
+            <strong>WEEKLY DEALS:</strong><br />
+            On November&nbsp;4, 11, 18, and&nbsp;25,&nbsp;2019, we will feature
+            four (4) different rewards and on December&nbsp;2, 2019, we will
+            feature six (6) different rewards from the
+            Membership&nbsp;Rewards<sup>&reg;</sup> catalogue at a reduced point
+            level for a period of seven (7) days, from 12:00:01am on the Monday
+            until 11:59:59pm&nbsp;ET on the Sunday of the dates indicated.
+            Cardmembers can redeem for the reward online at
+            <a href="http://membershiprewards.ca" target="_blank"
+              >membershiprewards.ca</a
+            >
+            on the dates specified. Offer not valid on previously redeemed
+            items.
+          </p>
+          <p>
+            <strong>MERCHANDISE AVAILABILITY</strong><br />
+            All merchandise rewards are subject to availability. If an order is
+            not available, a similar item of equal value will be substituted
+            whenever possible. If a substitution is not available, your
+            Membership&nbsp;Rewards points will be credited back to your program
+            account and you will be contacted. Merchandise rewards are subject
+            to change without notice. New merchandise rewards will be added to
+            the program on a regular basis. Some rewards are available in
+            limited quantities. Limited items will be so noted in the product
+            description.
+          </p>
+          <p>
+            <strong>MERCHANDISE DELIVERY</strong><br />
+            Please allow 2–4 weeks for delivery. Cardmembers are required to
+            provide a signature when rewards are delivered. Some items may have
+            longer delivery times—this will be indicated. Orders are shipped via
+            courier and require complete mailing address and telephone number
+            for daytime delivery. (Orders cannot be shipped to a post office
+            box.)
+          </p>
+          <p>
+            <strong>MERCHANDISE RETURNS</strong><br />
+            Redeemed rewards are not refundable, exchangeable, replaceable or
+            transferable for cash or credit.
+          </p>
+          <p>
+            <strong>GIFT CARDS</strong><br />
+            Membership&nbsp;Rewards points can be redeemed for Gift Cards or
+            certificates and other merchandise. The Gift Card or Certificate is
+            subject to the Terms and Conditions indicated on the reward. For
+            full Membership&nbsp;Rewards Program Terms &amp; Conditions, visit
+            <a href="http://membershiprewards.ca" target="_blank"
+              >membershiprewards.ca</a
+            >
+            or call
+            <span style="display: inline-block;">1-800-668-AMEX (2639)</span>.
+            Small Business Cardmembers, please call
+            <span style="display: inline-block;">1-888-721-1046</span>.
+            Corporate Cardmembers, please call
+            <span style="display: inline-block;">1-800-716-6661</span>.
+          </p>
+          <p>
+            <strong>1. Hudson’s Bay Gift Card</strong><br />
+            For gift card balance inquiries, please visit any Hudson’s Bay
+            store. Use of this gift card constitutes acceptance of the terms on
+            <a href="http://thebay.com" target="_blank">thebay.com</a>, which
+            may be revised at any time. The gift card balance can be redeemed
+            for merchandise at any Hudson’s Bay store in Canada, or at
+            <a href="http://thebay.com" target="_blank">thebay.com</a>. Hudson’s
+            Bay Gift Cards have no service fees and no expiration dates. This
+            gift card cannot be exchanged for cash or gift cards. No change will
+            be given for any unused balance on this gift card unless required by
+            applicable law. The value on this gift card will not be replaced if
+            lost, stolen or used without your permission. Protect this gift card
+            like cash. This gift card cannot be used for payment towards a
+            Hudson’s Bay Company credit card. This gift card may not be accepted
+            by certain licensees. Hudson’s Bay and its associated designs are
+            trademarks of Hudson’s Bay Company. Visit
+            <a
+              href="https://www.thebay.com/TermsAndConditions#gift_cards"
+              target="_blank"
+              >https://www.thebay.com/TermsAndConditions#gift_cards</a
+            >
+            for full terms &amp; conditions. The gift card or certificate is
+            subject to the Terms and Conditions indicated on the reward. See
+            full Membership&nbsp;Rewards Terms & Conditions or call
+            <span style="display: inline-block;">1-800-668-2639</span>. Small
+            Business Cardmembers, please call
+            <span style="display: inline-block;">1 888-721-1046</span>.
+            Corporate Cardmembers, please call
+            <span style="display: inline-block;">1-800-716-6661</span>.
+          </p>
+          <p>
+            <strong>2. The Keg Steakhouse + Bar Gift Card</strong><br />
+            The Gift Card or Certificate is subject to the Terms and Conditions
+            indicated on the reward. For Full Membership&nbsp;Rewards Terms &
+            Conditions, click
+            <a
+              href="https://www.americanexpress.com/en-ca/rewards/membership-rewards/terms"
+              target="_blank"
+              >here</a
+            >
+            or call <span style="display: inline-block;">1-800-668-2639</span>.
+            Corporate Cardmembers, please call
+            <span style="display: inline-block;">1-800-716-6661</span>.
+          </p>
+          <p>
+            Subject to Membership&nbsp;Rewards Terms and Conditions. Visit
+            <a href="http://membershiprewards.ca" target="_blank"
+              >membershiprewards.ca</a
+            >
+            for full Terms & Conditions of the Membership&nbsp;Rewards program
+            or call
+            <span style="display: inline-block;">1-800-668-AMEX (2639)</span>.
+            Small Business Cardmembers, please call
+            <span style="display: inline-block;">1-888-721-1046</span>.
+            Corporate Cardmembers, please call
+            <span style="display: inline-block;">1-800-716-6661</span>.
+          </p>
+          <p>
+            TM,
+            <span style="font-family: Helvetica, Arial, sans-serif;">&reg;</span
+            >: Used by Amex Bank of Canada under license from American Express.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="selectedValue=='fr'">
+      <span id="brand">
+        <img
+          class="logo-navbar"
+          src="/assets/amex-membershiprewards-logo_FR.svg"
+          alt=""
+        />
+      </span>
+
+      <div class="border_wrap">
+        <div class="weeklyIdentifier_content">
+          <h2>MODALIT&Eacute;S</h2>
+        </div>
+
+        <div class="legal_content">
+          <p>
+            <strong>AUBAINES HEBDOMADAIRES&nbsp;:</strong><br />
+            Les&nbsp;4, 11, 18 et 25&nbsp;novembre&nbsp;2019, nous offrirons
+            quatre (4) récompenses différentes, et le 2&nbsp;décembre&nbsp;2019,
+            six (6) récompenses différentes, du catalogue Points-privilèges<sup
+              >MD</sup
+            >
+            à un nombre de points réduit pendant une période de sept (7) jours,
+            entre 0&nbsp;h&nbsp;0&nbsp;min&nbsp;1&nbsp;s&nbsp;(HE) le lundi et
+            23&nbsp;h&nbsp;59&nbsp;min&nbsp;59&nbsp;s&nbsp;(HE) le dimanche, aux
+            dates indiquées. Les titulaires peuvent échanger leurs points contre
+            la récompense en ligne sur
+            <a
+              href="https://www.americanexpress.com/fr-ca/rewards/membership-rewards/"
+              target="_blank"
+              >pointsprivileges.ca</a
+            >
+            aux dates précisées. L’offre ne s’applique pas aux échanges de
+            points déjà effectués.
+          </p>
+          <p>
+            <strong>DISPONIBILITÉ DES ARTICLES</strong><br />
+            Les articles en primes sont assujettis aux disponibilités. Si un
+            article commandé n’est pas disponible, il sera remplacé par un
+            article semblable de valeur égale si possible. S’il n’est pas
+            possible de le remplacer, vos points-privilèges seront remis dans
+            votre compte, et nous communiquerons avec vous. Les récompenses
+            peuvent être modifiées sans préavis. De nouvelles récompenses seront
+            ajoutées au programme régulièrement. Certaines récompenses sont
+            offertes en quantité limitée. Il sera précisé si les articles sont
+            offerts en quantité limitée dans la description du produit.
+          </p>
+          <p>
+            <strong>LIVRAISON DES ARTICLES</strong><br />
+            Veuillez prévoir de 2&nbsp;à&nbsp;4 semaines pour la livraison. Les
+            titulaires de la Carte doivent signer un récépissé de livraison. Le
+            délai de livraison de certains articles pourrait être plus long; ce
+            sera indiqué. Les marchandises sont expédiées par service de
+            messagerie. L’adresse postale complète et un numéro de téléphone
+            sont requis pour la livraison de jour. (Les commandes ne peuvent
+            être expédiées à une case postale.)
+          </p>
+          <p>
+            <strong>RETOUR D’UN ARTICLE</strong><br />
+            Les primes ne peuvent être remboursées, échangées, remplacées ou
+            cédées contre de l’argent ou un crédit.
+          </p>
+          <p>
+            <strong>CARTES-CADEAUX</strong><br />
+            Les points-privilèges peuvent être échangés contre des
+            cartes-cadeaux, des chèques-cadeaux ou d’autres articles. Les
+            cartes-cadeaux et les chèques-cadeaux sont assujettis aux modalités
+            indiquées sur la récompense. Pour consulter les modalités complètes
+            du programme Points-privilèges, visitez
+            <a
+              href="https://www.americanexpress.com/fr-ca/rewards/membership-rewards/"
+              target="_blank"
+              >pointsprivileges.ca</a
+            >
+            ou composez le
+            <span style="display: inline-block;"
+              >1&nbsp;800&nbsp;668-AMEX&nbsp;(2639)</span
+            >. Titulaires d’une Carte pour PME, veuillez composer le
+            <span style="display: inline-block;">1&nbsp;888&nbsp;721-1046</span
+            >. Titulaires d’une Carte affaires, veuillez composer
+            <span style="display: inline-block;"
+              >le 1&nbsp;800&nbsp;716-6661</span
+            >.
+          </p>
+          <p>
+            <strong>1. Carte-cadeau de La Baie d’Hudson</strong><br />
+            Pour connaître le solde de votre carte-cadeau, veuillez visiter un
+            magasin
+            <a href="http://thebay.com" target="_blank">La Baie d’Hudson</a>. En
+            utilisant cette carte-cadeau, vous confirmez votre acceptation des
+            modalités qui se trouvent sur le site labaie.com, lesquelles peuvent
+            être modifiées en tout temps. Vous pouvez échanger le solde de votre
+            carte-cadeau contre des articles dans tous les magasins La Baie
+            d’Hudson au Canada, ainsi qu’en ligne à labaie.com. Les
+            cartes-cadeaux La Baie d’Hudson ne comportent aucuns frais de
+            service ni aucune date d’expiration. Cette carte-cadeau ne peut pas
+            être échangée contre de l’argent ou des cartes-cadeaux. Un solde
+            inutilisé ne peut être remboursé, à moins que la loi ne l’exige. La
+            valeur de cette carte-cadeau ne sera pas remplacée en cas de perte,
+            de vol ou d’utilisation non autorisée. Veuillez protéger cette
+            carte-cadeau de la même manière que vous le feriez pour de l’argent
+            comptant. Cette carte-cadeau ne peut pas servir au paiement d’une
+            carte de crédit La Baie d’Hudson. Cette carte-cadeau peut ne pas
+            être acceptée par certains titulaires de licence. La Baie d’Hudson,
+            Hudson’s Bay et leurs logos respectifs sont des marques de commerce
+            de la Compagnie de la Baie d’Hudson. Visitez
+            <a
+              href="https://www.labaie.com/content/content.jsp?pageId=TermsConditions&sre=FOOTER_TERMSCONDITIONS"
+              target="_blank"
+              >https://www.labaie.com/content/content.jsp?pageId=TermsConditions&sre=FOOTER_TERMSCONDITIONS</a
+            >
+            pour connaître les modalités complètes. Les cartes-cadeaux et les
+            chèques-cadeaux sont assujettis aux modalités indiquées sur la
+            récompense. Consultez les modalités complètes du programme
+            Points-privilèges ou composez le
+            <span style="display: inline-block;">1&nbsp;800&nbsp;668-2639</span
+            >. Titulaires d’une Carte pour PME, veuillez composer le
+            1&nbsp;888&nbsp;721-1046. Titulaires d’une Carte affaires, veuillez
+            composer le
+            <span style="display: inline-block;">1&nbsp;800&nbsp;716-6661</span
+            >.
+          </p>
+          <p>
+            <strong>2. Carte-Cadeau The Keg Steakhouse + Bar</strong><br />
+            Les cartes-cadeaux et les chèques-cadeaux sont assujettis aux
+            modalités indiquées sur la récompense. Pour les modalités complètes
+            du programme Points-privilèges,
+            <a
+              href="https://www.americanexpress.com/en-ca/rewards/membership-rewards/terms"
+              target="_blank"
+              >cliquez ici</a
+            >
+            ou composez le
+            <span style="display: inline-block;">1&nbsp;800&nbsp;668-2639</span
+            >. Titulaires d’une Carte affaires, veuillez composer le
+            <span style="display: inline-block;">1&nbsp;800&nbsp;716-6661</span
+            >.
+          </p>
+          <p>
+            Ces offres sont assujetties aux modalités du programme
+            Points-privilèges. Pour connaître les modalités complètes du
+            programme Points-privilèges, visitez le site
+            <a
+              href="https://www.americanexpress.com/fr-ca/rewards/membership-rewards/"
+              target="_blank"
+              >pointsprivileges.ca</a
+            >
+            ou composez le
+            <span style="display: inline-block;"
+              >1&nbsp;800&nbsp;668-AMEX (2639)</span
+            >. Titulaires d’une Carte pour PME, veuillez composer le
+            <span style="display: inline-block;">1&nbsp;888&nbsp;721-1046</span
+            >. Titulaires d’une Carte affaires, veuillez composer le
+            <span style="display: inline-block;">1&nbsp;800&nbsp;716-6661</span
+            >.
+          </p>
+          <p>
+            MC, MD : utilisées par la Banque Amex du Canada en vertu d’une
+            licence accordée par American Express.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</nz-modal>

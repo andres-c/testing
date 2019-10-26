@@ -1,0 +1,130 @@
+<nav id="topNavBar" class="navbar-fixed-top">
+  <!-- {{translateservice.currentLang}} use this for lang on component -->
+  <div class="toggle-button" id="toggle">
+    <span class="bar top">&nbsp;</span>
+    <span class="bar middle">&nbsp;</span>
+    <span class="bar bottom">&nbsp;</span>
+  </div>
+
+
+
+  <span *ngIf="selectedValue=='en'" id="brand">
+    <a (click)="goHome()">
+      <img class="logo-navbar" src="/assets/amex-membershiprewards-logo_EN.svg" alt="" />
+    </a>
+  </span>
+  <span *ngIf="selectedValue=='fr'" id="brand">
+    <a (click)="goHome()">
+      <img class="logo-navbar" src="/assets/amex-membershiprewards-logo_FR.svg" alt="" />
+    </a>
+  </span>
+  
+  
+  
+
+
+  <div class="header-btns">
+    <div>
+      <button (click)="searchByProductCategory('style')">
+        <img src="/assets/icons/new/style-white.png" />
+        {{ "HOME.STYLE_BTN" | translate }}
+      </button>
+    </div>
+    <div>
+      <button *ngIf="selectedValue=='en'" (click)="searchByProductCategory('home')">
+        <img src="/assets/icons/new/home-white.png" />
+        {{ "HOME.HOME_BTN" | translate }}
+      </button>
+      <button
+        *ngIf="selectedValue=='fr'"
+        (click)="searchByProductCategory('maison')"
+      >
+        <img src="/assets/icons/new/home-white.png" />
+        {{ "HOME.HOME_BTN" | translate }}
+      </button>
+    </div>
+    <div>
+      <button *ngIf="selectedValue=='en'" (click)="searchByProductCategory('tech')">
+        <img src="/assets/icons/new/tech-white.png" />
+        {{ "HOME.TECH_BTN" | translate }}
+      </button>
+      <button
+        *ngIf="selectedValue=='fr'"
+        (click)="searchByProductCategory('technologie')"
+      >
+        <img src="/assets/icons/new/tech-white.png" />
+        {{ "HOME.TECH_BTN" | translate }}
+      </button>
+    </div>
+    <div>
+      <button
+        *ngIf="selectedValue=='en'"
+        (click)="searchByProductCategory('travel')"
+      >
+        <img src="/assets/icons/new/travel-white.png" />
+        {{ "HOME.TRAVEL_BTN" | translate }}
+      </button>
+      <button
+        *ngIf="selectedValue=='fr'"
+        (click)="searchByProductCategory('voyages')"
+      >
+        <img src="/assets/icons/new/travel-white.png" />
+        {{ "HOME.TRAVEL_BTN" | translate }}
+      </button>
+    </div>
+  </div>
+
+
+
+</nav>
+
+
+<div class="overlay" [ngClass]="(selectedValue=='en')?'en':''" id="overlay">
+  <nav class="overlay-menu">
+    <ul>
+      <li>
+        <a (tap)="handleTap()" (click)="searchByProductCategory('style')"
+          ><img src="/assets/icons/new/style-white.png" />
+          {{ "HOME.STYLE_BTN" | translate }}
+        </a>
+      </li>
+      <li>
+        <a (tap)="handleTap()" *ngIf="selectedValue=='en'" (click)="searchByProductCategory('home')"
+          ><img src="/assets/icons/new/home-white.png" />
+          {{ "HOME.HOME_BTN" | translate }}
+        </a>
+      </li>
+      <li>
+        <a (tap)="handleTap()" *ngIf="selectedValue!=='en'" (click)="searchByProductCategory('maison')"
+          ><img src="/assets/icons/new/home-white.png" />
+          {{ "HOME.HOME_BTN" | translate }}
+        </a>
+      </li>
+      <li>
+        <a (tap)="handleTap()" *ngIf="selectedValue=='en'" (click)="searchByProductCategory('tech')"
+          ><img src="/assets/icons/new/tech-white.png" />
+          {{ "HOME.TECH_BTN" | translate }}
+        </a>
+      </li>
+      <li>
+        <a (tap)="handleTap()" *ngIf="selectedValue!=='en'" (click)="searchByProductCategory('technologie')"
+          ><img src="/assets/icons/new/tech-white.png" />
+          {{ "HOME.TECH_BTN" | translate }}
+        </a>
+      </li>
+      <li>
+        <a (tap)="handleTap()" *ngIf="selectedValue=='en'" (click)="searchByProductCategory('travel')"
+          ><img src="/assets/icons/new/travel-white.png" /> 
+          {{ "HOME.TRAVEL_BTN" | translate }}
+        </a>
+      </li>
+      <li>
+        <a (tap)="handleTap()" *ngIf="selectedValue!=='en'" (click)="searchByProductCategory('voyages')"
+          ><img src="/assets/icons/new/travel-white.png" /> 
+          {{ "HOME.TRAVEL_BTN" | translate }}
+        </a>
+      </li>
+    </ul>
+  </nav>
+</div>
+

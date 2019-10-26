@@ -1,0 +1,60 @@
+<!-- Lang value is reversed in this component? -->
+<section *ngIf="lang2 !== 'fr'" class="section-padding surprise-savings">
+    <div class="early_countdown savings-grid">
+      <h2>
+        THE BEST POINT DROP OFFERS OF THE SEASON START IN
+      </h2>
+  
+      <div class="early_countdown_timer">
+        <div class="early_countdown_time">
+          <span class="number">{{days}}</span>
+          <span *ngIf=" days == 1 ">DAY </span><span *ngIf=" days == 0 || days > 1 ">DAYS </span>
+        </div> 
+        <div class="divider">:</div>
+        <div class="early_countdown_time">
+          <span class="number"><div *ngIf="10 > hours ">0</div>{{hours}}</span>
+          <span *ngIf=" hours == 1 ">HOUR </span><span *ngIf=" hours == 0 || hours > 1 ">HOURS </span>
+        </div>
+        <div class="divider">:</div>
+        <div class="early_countdown_time">
+          <span class="number"><div *ngIf="10 > minutes ">0</div>{{minutes}}</span>
+          <span *ngIf=" minutes == 1 ">MINUTE </span><span *ngIf=" minutes == 0 || minutes > 1 ">MINUTES </span>
+        </div>
+        <div class="divider">:</div>
+        <div class="early_countdown_time">
+          <span class="number"><div *ngIf="10 > seconds ">0</div>{{seconds}}</span>
+          <span *ngIf=" seconds == 1 ">SECOND </span><span *ngIf=" seconds == 0 || seconds > 1 ">SECONDS </span>
+        </div>
+      </div>
+    </div>
+</section>
+
+<section *ngIf="lang2 == 'fr'" class="section-padding surprise-savings">
+    <div class="early_countdown savings-grid">
+      <h2 class="pre-count-header-fr">
+          LES MEILLEURES OFFRES DE CHUTES DE&nbsp;POINTS DE LA SAISON DÉBUTENT DANS
+      </h2>
+  
+      <div class="early_countdown_timer">
+        <div class="early_countdown_time">
+          <span class="number">{{days}}</span>
+          <span *ngIf=" days == 1 ">JOUR </span><span *ngIf=" days == 0 || days > 1 ">JOURS </span>
+        </div> 
+        <div class="divider">:</div>
+        <div class="early_countdown_time">
+          <span class="number"><div *ngIf="10 > hours ">0</div>{{hours}}</span>
+          <span *ngIf=" hours == 1 ">HEURE </span><span *ngIf=" hours == 0 || hours > 1 ">HEURES </span>
+        </div>
+        <div class="divider">:</div>
+        <div class="early_countdown_time">
+          <span class="number"><div *ngIf="10 > minutes ">0</div>{{minutes}}</span>
+          <span *ngIf=" minutes == 1 ">MINUTE </span><span *ngIf=" minutes == 0 || minutes > 1 ">MINUTES </span>
+        </div>
+        <div class="divider">:</div>
+        <div class="early_countdown_time">
+          <span class="number"><div *ngIf="10 > seconds ">0</div>{{seconds}}</span>
+          <span *ngIf=" seconds == 1 ">SECONDE </span><span *ngIf=" seconds == 0 || seconds > 1 ">SECONDES </span>
+        </div>
+      </div>
+    </div>
+</section>
